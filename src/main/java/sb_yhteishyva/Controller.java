@@ -37,12 +37,12 @@ public class Controller {
 
     @RequestMapping(path = "/addCity")
     public @ResponseBody
-    String addNewCity(@RequestParam long kaupunki,@RequestParam long id){
+    String addNewCity(@RequestParam long kaupunki,@RequestParam long koulu){
         Opiskelupaikka o;
         Kaupunki k;
         k = kaupunkiRepository.findOne(kaupunki);
-        k.getOpiskelupaikat().add(schoolRepository.findOne(id));
-        o = schoolRepository.findOne(id);
+        k.getOpiskelupaikat().add(schoolRepository.findOne(koulu));
+        o = schoolRepository.findOne(koulu);
         o.getKaupungit().add(k);
         schoolRepository.save(o);
         kaupunkiRepository.save(k);
